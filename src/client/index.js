@@ -1,7 +1,9 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
+import * as callAPI from './js/callAPI'
+import * as changePage from './js/changePage'
 
-console.log(checkForName);
+import './styles/import.scss'
 
-alert("I EXIST")
-console.log("CHANGE!!");
+export {
+  callAPI,
+  changePage
+}
