@@ -1,20 +1,33 @@
-export function callAPI(){
+export async function callAPI(){
+  event.preventDefault()
   const url = document.getElementById('site').value;
-  // validate(url
-  console.log("did it validate?")
+  validate(url)
+  .then(
+    function(res){
+      if (res){
+          console.log("it validated")
+          Client.changePage.changePage()
+      }
+    }
+  )
+
 }
 
-function validate(url){
+async function validate(url){
 
-
-//found via https://stackoverflow.com/a/14582229
-  const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
-  '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-  '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-  '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  const exp = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi ;
+  const pattern = new RegExp(exp);
   const tested = pattern.test(url);
+  return tested;
+}
 
-  console.log(tested);
+async function API(){
+  fetch()
+  .then(res => res.json())
+  .then(
+    if (res){
+      console.log(res);
+    // Client.changePage.changePage(res)
+  }
+  )
 }

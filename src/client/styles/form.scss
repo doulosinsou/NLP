@@ -1,12 +1,30 @@
+@import "base.scss";
+
 form {
-    border: 1px solid #545454;
-    border-radius: 3px;
-    padding: 40px;
+    margin: 30px auto;
+    border: 1px solid;
+    border-radius: 5px;
+    display: flex;
+    max-width: 600px;
+    background-color: $gray;
 }
 
 input {
     padding: 5px 20px;
-    width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
+    width: auto;
+    margin: 15px 15px;
+    line-height: 2em;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+#site {
+  flex: 2;
+  margin-right: 0;
+}
+
+#button {
+  background-color: $blue;
+  color: white;
 }

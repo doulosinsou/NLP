@@ -9,19 +9,18 @@
     <body>
 
         <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
+            <h1>Article Vibes</h1>
+            <p>Made possible by ______</p>
         </header>
 
         <main>
             <section>
-                <form class="" onsubmit="return false">
-                    <input id="site" type="url" pattern="regexp" name="input" value=""  placeholder="www.check.mysite">
-                    <input type="submit" name="" value="submit" onsubmit="Client.callAPI.callAPI()">
+              <h2>Check a Website</h2>
+                <form class="" onsubmit="return Client.callAPI.callAPI()">
+                    <input id="site" type="url"
+                    pattern="https?://.+" name="input" value="https://"
+                    title="ex: check.mysite" >
+                    <input id="button" type="submit" name="" value="submit" onsubmit="Client.callAPI.callAPI()">
                 </form>
             <section>
 
@@ -32,7 +31,7 @@
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            <p>Thanks for using. App by Luke Moyer</p>
         </footer>
 
     </body>
