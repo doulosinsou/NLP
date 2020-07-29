@@ -11,15 +11,15 @@ export async function callAPI(){
       }
     }
   )
-};
+}
 
-export function validate(url){
+export async function validate(url){
 
   const exp = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi ;
   const pattern = new RegExp(exp);
   const tested = pattern.test(url);
   return tested;
-};
+}
 
 const api = async (url)=> {
   const query = "?url=";
@@ -34,4 +34,4 @@ const api = async (url)=> {
   }
 
 
-};
+}
