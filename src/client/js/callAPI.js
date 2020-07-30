@@ -5,9 +5,11 @@ export async function callAPI(){
   .then(
     async function(res){
       if (res){
-          console.log("it validated")
+          console.log("it validated");
           const get = await api(url);
           Client.changePage.changePage(get);
+      } else {
+        console.log("Not a valid website");
       }
     }
   )
