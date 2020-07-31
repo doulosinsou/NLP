@@ -1,29 +1,65 @@
 export function changePage(apiData){
 
+  const url = document.getElementById('site').value;
+  let tone;
+      if (apiData.agreement === "DISAGREEMENT"){
+        tone = "conflicting";
+      } else{
+        tone = "consistent";
+      };
+  let irony;
+      if (apiData.irony === "NONIRONIC"){
+        irony = "non-ironic";
+      } else{
+        irony = "ironic";
+      }
+  let subjectivity;
+      if (apiData.subjectivity === "OBJECTIVE"){
+        subjectivity = "objective";
+      } else {
+        subjectivity = "subjective"
+      }
+  let sentiment;
+        if (apiData.score_tag === "P+"){
+          sentiment ="very positive";
+        } else if (apiData.score_tag === "P"){
+          sentiment ="positive";
+        } else if (apiData.score_tag === "NEU"){
+          sentiment ="neutral";
+        } else if (apiData.score_tag === "N"){
+          sentiment ="negative";
+        } else if (apiData.score_tag === "N+"){
+          sentiment ="very negative";
+        } else if (apiData.score_tag === "NONE"){
+          sentiment ="lack of";
+        }
+
+const confidence = apiData.confidence;
+
   const results = document.getElementById('results');
+  results.innerHTML =
 
-  const alert = "The API is failing to authenticate. A notice on their documentation page says that accounts created after mid July would no longer be supported.";
+  "<p>Using a generic model, the text on <u>" + url + "</u> has " + tone + " tones. It leans toward being <i>" + irony + "</i> and <i>" + subjectivity +"</i>. Overall, it has a <strong>" + sentiment + "</strong> sentiment.</p><p>The <a href ='https://www.meaningcloud.com/developer/sentiment-analysis'>MeaningCloud Sentiment</a> analysis service is <strong>" + confidence + "%</strong> sure of this rating.</p>"
 
-
-  results.classList.toggle('results');
-  results.innerHTML = "'"+ apiData + "' : " + alert;
   console.log(apiData);
 
   mood(apiData)
 }
 
 export function mood(apiData){
-  const mood = apiData.mood;
-  if (mood === "business"){
+  const mood = apiData.score_tag;
+  if (mood === "P+" || mood ==="P"){
     let body = document.getElementsByTagName('body')[0];
     body.style = "background: radial-gradient(at top, #3f7363, #145c46)";
-    console.log("your mood is business");
-  } else if (mood === "academic"){
+    console.log("your mood is positive");
+  } else if (mood === "NEU" || mood === "NONE"){
     let body = document.getElementsByTagName('body')[0];
     body.style = "background: radial-gradient(at top, #737140, #5c5914)";
-  } else if (mood === "casual"){
+    console.log("your mood is neutral");
+  } else if (mood === "N" || mood === "N+"){
     let body = document.getElementsByTagName('body')[0];
     body.style = "background: radial-gradient(at top, #3f3963, #1e145c)";
+    console.log("your mood is negative");
   }
 
 }

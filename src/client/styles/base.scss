@@ -38,11 +38,16 @@ section {
 }
 
 #resultsContainer {
+  font-size: 1.2rem;
   text-align: center;
   color: white;
+  line-height: 1.5em;
 
   strong {
-    font-size: 1.3em;
-    font-weight: 500;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  i{
+    font-style: italic;
   }
 }

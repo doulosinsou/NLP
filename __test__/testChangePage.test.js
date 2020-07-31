@@ -8,8 +8,8 @@ test('body background color based on apiData', () => {
     object.mood = mood;
     return object;
   }
-  expect(mood(makemood("business"))).toBe(console.log('your mood is business'));
-  expect(mood(makemood("academnic"))).toBe(console.log('your mood is academic'));
-  expect(mood(makemood("casual"))).toBe(console.log('your mood is casual'));
+  expect(mood(makemood("P"))).toBe(console.log('your mood is positive'));
+  expect(mood(makemood("NEU"))).toBe(console.log('your mood is neutral'));
+  expect(mood(makemood("N"))).toBe(console.log('your mood is negative'));
 });
   });
