@@ -25,7 +25,7 @@ export async function validate(url){
 
 const api = async (url)=> {
   const query = "?url=";
-  const request = await fetch('/NLP' + query + url);
+  const request = await fetch('/meaningcloud' + query + url);
   try {
     // const response = await request
     const response = await request.json()

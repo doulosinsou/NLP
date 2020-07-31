@@ -1,15 +1,8 @@
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
 const dotenv = require('dotenv')
 dotenv.config()
-
-const AYLIENTextAPI = require('aylien_textapi')
-const textapi = new AYLIENTextAPI({
-  application_id: process.env.API_ID,
-  application_key:process.env.API_KEY
-})
-
+const fetch = require('node-fetch')
 const app = express()
 
 const bodyParser = require('body-parser');
@@ -33,19 +26,39 @@ app.listen(3002, function () {
 })
 
 // get requests
-app.get('/NLP', getURL)
+app.get('/meaningcloud', getURL)
 
 async function getURL(req, res){
-  const url = req.query.url;
-  const call = await textapi.sentiment({
-  'url' : url
-}, function(error, response) {
-  if (error === null) {
-    res.send(response);
-    console.log(response);
-  } else {
-    console.log(error);
-    res.send(error);
-  }
+
+  const base = "https://api.meaningcloud.com/sentiment-2.1";
+  const key = "?key=" + process.env.API_KEY ;
+  const url = "&of=json&url=" + req.query.url;
+  const model = "&model=general&lang=en";
+
+  const fullapi = base + key + url + model;
+
+  apiPOST(fullapi)
+  .then(
+    function(apiResponse){
+      res.send(apiResponse)
+    }
+  )
+}
+
+
+const apiPOST = async(url="", data = {}) => {
+const call = await fetch(url, {
+  method: 'POST',
+  body: JSON.stringify(data),
+  headers: {
+  },
 });
+try {
+  const newdata = await call.json();
+  console.log(newdata);
+  return newdata;
+} catch(error) {
+  console.log(error);
+  return error;
+}
 }
